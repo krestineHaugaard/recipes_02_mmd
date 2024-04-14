@@ -1,7 +1,12 @@
-import Image from "next/image";
+export const metadata = {
+  title: "Frontpage",
+  description: "Description",
+};
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>
+    <main>
+      <h1>Fra den forside kan du komme videre til den ønskede opskrift</h1>
+    </main>
   );
 }

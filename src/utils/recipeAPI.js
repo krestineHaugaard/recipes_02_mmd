@@ -5,19 +5,24 @@ const recipeApiKey =
 // GET
 
 export async function getRecipe() {
-  let headersList = {
-    Accept: "application/json",
-    apikey: recipeApiKey,
-  };
-
-  let response = await fetch(recipeApiUrl, {
+  const data = await fetch(recipeApiUrl, {
     method: "GET",
-    headers: headersList,
-  });
-
-  let data = await response.json();
+    headers: { apikey: recipeApiKey },
+  }).then((response) => response.json());
 
   return data;
 }
 
-console.log(getRecipe());
+// get with slug
+
+export async function getSlugRecipe(slug) {
+  const data = await fetch(
+    `https://yuisogjwvntfoxudooln.supabase.co/rest/v1/recipes?slug=${slug}`,
+    {
+      method: "GET",
+      headers: { apikey: recipeApiKey },
+    }
+  ).then((response) => response.json());
+
+  return data;
+}
