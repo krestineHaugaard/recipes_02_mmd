@@ -10,7 +10,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const slug = params;
 
   const data = await getSlugRecipe({ slug });
 
@@ -20,11 +20,9 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function RecipePage({ params }) {
-  const { slug } = params;
-
+export default async function RecipePage() {
   const data = await fetch(
-    `https://yuisogjwvntfoxudooln.supabase.co/rest/v1/recipes?slug=${slug}`,
+    `https://yuisogjwvntfoxudooln.supabase.co/rest/v1/recipes?slug=eq.${slug}`,
     {
       method: "GET",
       headers: {
@@ -33,8 +31,6 @@ export default async function RecipePage({ params }) {
       },
     }
   ).then((response) => response.json());
-
-  console.log(data);
 
   return (
     <main>
